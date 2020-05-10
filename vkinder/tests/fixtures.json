@@ -1,0 +1,73 @@
+{
+    "ids_from_db": [
+        123,
+        456,
+        789,
+        321,
+        654,
+        987
+    ],
+    "result_search": [
+        {
+            "name": "Bla Bla 123",
+            "page_url": "https://vk.com/id123",
+            "top_photo": [
+                "https://photo_1",
+                "https://photo_2",
+                "https://photo_3"
+            ],
+            "user_id": 123
+        },
+        {
+            "name": "Bla Bla 456",
+            "page_url": "https://vk.com/id456",
+            "top_photo": [
+                "https://photo_1",
+                "https://photo_2",
+                "https://photo_3"
+            ],
+            "user_id": 456
+        },
+        {
+            "name": "Bla Bla 789",
+            "page_url": "https://vk.com/id789",
+            "top_photo": [
+                "https://photo_1",
+                "https://photo_2",
+                "https://photo_3"
+            ],
+            "user_id": 789
+        },
+        {
+            "name": "Bla Bla 312",
+            "page_url": "https://vk.com/id123",
+            "top_photo": [
+                "https://photo_1",
+                "https://photo_2",
+                "https://photo_3"
+            ],
+            "user_id": 321
+        },
+        {
+            "name": "Bla Bla 654",
+            "page_url": "https://vk.com/id456",
+            "top_photo": [
+                "https://photo_1",
+                "https://photo_2",
+                "https://photo_3"
+            ],
+            "user_id": 654
+        },
+        {
+            "name": "Bla Bla 987",
+            "page_url": "https://vk.com/id789",
+            "top_photo": [
+                "https://photo_1",
+                "https://photo_2",
+                "https://photo_3"
+            ],
+            "user_id": 987
+        }
+    ],
+    "searcher_id": "tests"
+}
