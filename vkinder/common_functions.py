@@ -83,6 +83,28 @@ def write_json(text, filename, path='', mode='wt'):
     txt = json.dumps(text, sort_keys=True, indent=4, ensure_ascii=False)
     with open(out_file, mode=mode, encoding='utf8') as file:
         file.write(txt)
-
+        
+def make_dir(path):
+    pwd = os.getcwd()
+    if '\\' in path:
+        lst = path.split('\\')
+        for i in lst:
+            if i in os.listdir():
+                os.chdir(i)
+            else:
+                os.mkdir(i)
+                os.chdir(i)
+    elif '/' in path:
+        lst = path.split('/')
+        for i in lst:
+            if i in os.listdir():
+                os.chdir(i)
+            else:
+                os.mkdir(i)
+                os.chdir(i)
+    else:
+        if path not in os.listdir():
+            os.mkdir(path)
+    os.chdir(pwd)
 
 

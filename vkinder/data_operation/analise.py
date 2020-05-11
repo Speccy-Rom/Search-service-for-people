@@ -89,5 +89,8 @@ class Analise:
                         self.vote[dict_['id']] = (self.weights['groups'] * count_groups)
                     else:
                         self.vote[dict_['id']] += (self.weights['groups'] * count_groups)
-
+      
+    def result(self):
+      self.tqdm.close()
+      return self.vote
 
