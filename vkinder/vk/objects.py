@@ -244,3 +244,10 @@ class UserFound(UserVK):
                         list_photos.append(sizes['url'])
         return list_photos
 
+    def __dict__(self):
+        return {
+            'user_id': self.user_id,
+            'name': self.fio,
+            'page_url': self.url,
+            'top_photo': self.top_photo(),
+        }

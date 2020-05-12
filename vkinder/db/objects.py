@@ -29,3 +29,6 @@ class Searcher(Vkinder):
     top_photo = TextField(null=False)
     date_search = DateTimeField(default=datetime.now())
 
+    class Meta:
+        table_name = table
+        name = table
