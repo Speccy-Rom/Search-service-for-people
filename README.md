@@ -14,5 +14,3 @@ $ python3 -m vkinder
 $ python3 -m unittest -v vkinder/tests/test_db.py
 
 # Остальные тесты в разработке
-$ ...
-```
