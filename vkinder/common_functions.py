@@ -17,11 +17,11 @@ def init_variable():
     two_factor = input('\nВы используете двухфакторную авторизацию? (да/нет) - ')
     login = str(input('Пожалуйста, введите логин (желательно номер телефона): '))
     password = getpass.getpass('Введите Ваш пароль и нажмите "Enter" (символы не отображаются): ')
-    if two_factor in YES:
-        vk_ = vk_login(login, password, True)
-    else:
-        vk_ = vk_login(login, password)
-    return vk_
+    return (
+        vk_login(login, password, True)
+        if two_factor in YES
+        else vk_login(login, password)
+    )
 
 
 def translate(text, from_='en', to='ru'):
@@ -89,22 +89,17 @@ def make_dir(path):
     if '\\' in path:
         lst = path.split('\\')
         for i in lst:
-            if i in os.listdir():
-                os.chdir(i)
-            else:
+            if i not in os.listdir():
                 os.mkdir(i)
-                os.chdir(i)
+            os.chdir(i)
     elif '/' in path:
         lst = path.split('/')
         for i in lst:
-            if i in os.listdir():
-                os.chdir(i)
-            else:
+            if i not in os.listdir():
                 os.mkdir(i)
-                os.chdir(i)
-    else:
-        if path not in os.listdir():
-            os.mkdir(path)
+            os.chdir(i)
+    elif path not in os.listdir():
+        os.mkdir(path)
     os.chdir(pwd)
 
 
