@@ -32,24 +32,23 @@ class Analise:
         for key_ in self.weights.keys():
             if key_ in ['common_count', 'groups']:
                 continue
-            else:
-                list_searcher = str_to_list(self.reference[key_])
-                for dict_ in self.data:
-                    self.tqdm.update(3)
-                    try:
-                        list_found = str_to_list(dict_[key_])
-                    except Exception as err:
-                        continue
-                    else:
-                        for word in list_searcher:
-                            if word in list_found:
-                                self.tqdm.update(5)
-                                try:
-                                    tmp = self.vote[dict_['id']]
-                                except KeyError as err:
-                                    self.vote[dict_['id']] = self.weights[key_]
-                                else:
-                                    self.vote[dict_['id']] += self.weights[key_]
+            list_searcher = str_to_list(self.reference[key_])
+            for dict_ in self.data:
+                self.tqdm.update(3)
+                try:
+                    list_found = str_to_list(dict_[key_])
+                except Exception as err:
+                    continue
+                else:
+                    for word in list_searcher:
+                        if word in list_found:
+                            self.tqdm.update(5)
+                            try:
+                                tmp = self.vote[dict_['id']]
+                            except KeyError as err:
+                                self.vote[dict_['id']] = self.weights[key_]
+                            else:
+                                self.vote[dict_['id']] += self.weights[key_]
 
     def vote_friends_mutual(self):
         self.vote_put()
@@ -80,8 +79,7 @@ class Analise:
             else:
                 self.tqdm.update(7)
                 set_found = set(UserVK(self.cursor, dict_['id']).groups)
-                count_groups = len(set_searcher.intersection(set_found))
-                if count_groups:
+                if count_groups := len(set_searcher.intersection(set_found)):
                     self.tqdm.update(16)
                     try:
                         tmp = self.vote[dict_['id']]

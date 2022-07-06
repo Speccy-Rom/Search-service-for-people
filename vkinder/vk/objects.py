@@ -33,7 +33,7 @@ class UserVK:
         self.family = self.resp['last_name']
         self.name = self.resp['first_name']
         self.domain = self.resp['domain']
-        self.fio = self.name + ' ' + self.family
+        self.fio = f'{self.name} {self.family}'
         self.url = f'https://vk.com/{self.domain}'
         self.sex = self.resp['sex']
         if self.delete or (self.close & (not self.can_access_closed)):
@@ -239,9 +239,12 @@ class UserFound(UserVK):
             list_photos.extend(get_top_urls(self.photos['items']))
         else:
             for photo in self.photos['items']:
-                for sizes in photo['sizes']:
-                    if sizes['type'] == 'x':
-                        list_photos.append(sizes['url'])
+                list_photos.extend(
+                    sizes['url']
+                    for sizes in photo['sizes']
+                    if sizes['type'] == 'x'
+                )
+
         return list_photos
 
     def __dict__(self):

@@ -10,8 +10,7 @@ def bdate_to_age(bdate):
     '''превращаем дату рождения в возраст полных лет'''
     date_list = bdate.split('.')
     birth_date = datetime(year=int(date_list[2]), month=int(date_list[1]), day=int(date_list[0]))
-    age = (datetime.now() - birth_date).days // 365
-    return age
+    return (datetime.now() - birth_date).days // 365
 
 
 def find_country():
@@ -51,9 +50,8 @@ def find_city(cursor):
             answer = input(f'Ваш выбор {id_city["title"]}? (да/нет) - ').lower()
             if answer in YES:
                 return id_city['id']
-            else:
-                print('Поздравляю! По-умолчанию выбран город Москва! ))))')
-                return 1
+            print('Поздравляю! По-умолчанию выбран город Москва! ))))')
+            return 1
 
 
 def age_determination(age=None):
@@ -99,7 +97,7 @@ def select_getinfo():
         select = input('\nВыберем как будем искать.\n'
                        '   1 - ищем партнера исходя из информации о Вас (при отсутствии дополним)\n'
                        '   2 - ищем по описанным Вами параметрам (ключевым словам)\nВыбор: ').strip()
-        if int(select) in [1, 2]:
+        if int(select) in {1, 2}:
             return int(select)
         else:
             continue
@@ -109,22 +107,31 @@ def metadata_found(cursor):
     print('\n   В качестве ответов на открытые вопросы можете вводить ключевые слова.\n'
           '   При отсутствии ответа вводите пробел.\n'
           '   НО ПОМНИТЕ: чем больше ключевых слов - тем интереснее результат ))')
-    meta = {
-        'age_from': int(input('Начиная с какого возраста ищем партнера? (целое число) - ')),
-        'age_to': int(input('До какого возраста ищем партнера? (целое число) - ')),
+    return {
+        'age_from': int(
+            input('Начиная с какого возраста ищем партнера? (целое число) - ')
+        ),
+        'age_to': int(
+            input('До какого возраста ищем партнера? (целое число) - ')
+        ),
         'city': find_city(cursor),
         'activities': input('Какова деятельность искомого партнера? - '),
         'interests': input('Каковы интересы искомого партнера? - '),
-        'about': input('Что интересно в поле "О себе" у искомого партнера? - '),
+        'about': input(
+            'Что интересно в поле "О себе" у искомого партнера? - '
+        ),
         'books': input('Какие книги интересны искомому партнеру? - '),
         'movies': input('Какие фильмы интересны искомому партнеру? - '),
-        'music': input('Какая музыка/исполнители интересны искомому партнеру? - '),
+        'music': input(
+            'Какая музыка/исполнители интересны искомому партнеру? - '
+        ),
         'games': input('Какие игры интересны искомому партнеру? - '),
         'tv': input('Какие ТВ-шоу интересны искомому партнеру? - '),
-        'quotes': input('Какие цитаты могут понравиться искомому партнеру? - '),
+        'quotes': input(
+            'Какие цитаты могут понравиться искомому партнеру? - '
+        ),
         'status': input('Что интересного может указать партнер в статусе? - '),
     }
-    return meta
 
 
 def max_value_likes_photo(list_):
@@ -141,8 +148,7 @@ def max_value_likes_photo(list_):
 
 def get_top_urls(list_):
     list_photos = []
-    index = 0
-    while index < 3:
+    for _ in range(3):
         photo_id = max_value_likes_photo(list_)
         for photo in list_:
             if photo['id'] == photo_id:
@@ -150,5 +156,4 @@ def get_top_urls(list_):
                     if sizes['type'] == 'x':
                         list_photos.append(sizes['url'])
                         list_.remove(photo)
-        index += 1
     return list_photos

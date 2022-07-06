@@ -13,7 +13,7 @@ db = SqliteExtDatabase(path_db, pragmas={
     'journal_mode': 'wal',
     'cache_size': -64 * 1000,
     'synchronous': 0})
-table = 'searcher_%s' % searcher_id
+table = f'searcher_{searcher_id}'
 
 
 class Vkinder(Model):

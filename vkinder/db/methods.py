@@ -37,17 +37,13 @@ def add_rows(list_dicts):
         except IntegrityError as err:
             error += f'{err}\n'
             continue
-    if error:
-        return f'Was detected warnings.\n{error}'
-    else:
-        return 'OK'
+    return f'Was detected warnings.\n{error}' if error else 'OK'
 
 
 def list_ids():
     '''list ids for check exist id'''
     column = Searcher.select(Searcher.user_id)
-    ids = [data.user_id for data in column]
-    return ids
+    return [data.user_id for data in column]
 
 
 def delete_rows():

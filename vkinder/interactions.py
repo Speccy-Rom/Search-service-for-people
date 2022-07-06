@@ -65,8 +65,7 @@ def run():
         analise.vote_groups()
     else:
         analise.vote_friends_mutual()
-    result = analise.result()
-    if result:
+    if result := analise.result():
         show_top(result)
         close_connect()
         print('Поиск окончен.')
