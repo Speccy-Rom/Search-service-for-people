@@ -1,4 +1,4 @@
 vk_api==11.5.0
-requests==2.22.0
+requests==2.31.0
 peewee==3.10.0
 tqdm==4.35.0
